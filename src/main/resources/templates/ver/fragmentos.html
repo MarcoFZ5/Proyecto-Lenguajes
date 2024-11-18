@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>AutoDream</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+        <style>
+            .accordion-button {
+                font-size: 1rem; /* Ajustar tamaño de fuente del encabezado */
+            }
+            .accordion-body {
+                padding: 1rem; /* Reducir padding del cuerpo del acordeón */
+            }
+            .form-control {
+                font-size: 0.875rem; /* Ajustar tamaño de fuente en inputs */
+                padding: 0.5rem; /* Reducir padding en inputs */
+            }
+            .btn-primary {
+                font-size: 0.875rem; /* Ajustar tamaño de fuente del botón */
+                padding: 0.5rem 1rem; /* Reducir padding del botón */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Fragmento para la lista de autos -->
+        <section th:fragment="listadoAutos">
+            <div class="container my-5">
+                <div class="row">
+                    <h2 class="inline">Nuestros Autos</h2>
+                </div>
+                <div class="row row-cols-3">
+                    <div class="card" th:each="auto : ${autos}">
+                        <img th:src="@{${auto.rutaImagen}}" alt="Imagen de auto" class="card-img-top" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">[[${auto.marca}]] [[${auto.modelo}]]</h5>
+                                <p class="card-text">
+                                    Año: [[${auto.año}]]<br>
+                                        Color: [[${auto.color}]]<br>
+                                            Kilometraje: [[${auto.kilometraje}]] km<br>
+                                                Precio: $[[${auto.precio}]]
+                                                </p>
+                                                <a class="btn btn-danger bg-opacity-75" th:href="@{/formulario/listado}">
+                                                    <i class="fa-solid fa-book"></i> Formulario
+                                                    
+                                                </a>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </section>
+
+                                                <!-- Fragmento para el Accordion de filtros -->
+                                                <section th:fragment="consultas" class="py-4 mb-4 bg-light">
+                                                    <div class="container">
+                                                        <div class="accordion" id="accordionFiltros">
+                                                            <!-- Filtro por Precio -->
+                                                            <div class="accordion-item">
+                                                                <h2 class="accordion-header" id="headingPrecio">
+                                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrecio" aria-expanded="true" aria-controls="collapsePrecio">
+                                                                        <span class="bg-danger text-white p-2 rounded">[[#{filtros.buscarPorPrecio}]]</span>
+                                                                    </button>
+                                                                </h2>
+                                                                <div id="collapsePrecio" class="accordion-collapse collapse show" aria-labelledby="headingPrecio" data-bs-parent="#accordionFiltros">
+                                                                    <div class="accordion-body bg-white">
+                                                                        <form method="post" th:action="@{/consulta1}">
+                                                                            <div class="mb-2">
+                                                                                <label for="precioInf" class="form-label">[[#{filtros.precioMinimo}]]</label>
+                                                                                <input type="number" class="form-control" id="precioInf" name="precioInf" step="0.01" required="true"/>
+                                                                            </div>
+                                                                            <div class="mb-2">
+                                                                                <label for="precioSup" class="form-label">[[#{filtros.precioMaximo}]]</label>
+                                                                                <input type="number" class="form-control" id="precioSup" name="precioSup" step="0.01" required="true"/>
+                                                                            </div>
+                                                                            <div class="text-center mt-2">
+                                                                                <button type="submit" class="btn btn-danger bg-opacity-75">
+                                                                                    <i class="fas fa-magnifying-glass"></i> [[#{filtros.buscar}]]
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Filtro por Año -->
+                                                            <div class="accordion-item">
+                                                                <h2 class="accordion-header" id="headingAno">
+                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAno" aria-expanded="false" aria-controls="collapseAno">
+                                                                        <span class="bg-danger text-white p-2 rounded">[[#{filtros.buscarPorAño}]]</span>
+                                                                    </button>
+                                                                </h2>
+                                                                <div id="collapseAno" class="accordion-collapse collapse" aria-labelledby="headingAno" data-bs-parent="#accordionFiltros">
+                                                                    <div class="accordion-body bg-white">
+                                                                        <form method="post" th:action="@{/consulta2}">
+                                                                            <div class="mb-2">
+                                                                                <label for="añoInf" class="form-label">[[#{filtros.añoMinimo}]]</label>
+                                                                                <input type="number" class="form-control" id="añoInf" name="añoInf" step="0.01" required="true"/>
+                                                                            </div>
+                                                                            <div class="mb-2">
+                                                                                <label for="añoSup" class="form-label">[[#{filtros.añoMaximo}]]</label>
+                                                                                <input type="number" class="form-control" id="añoSup" name="añoSup" step="0.01" required="true"/>
+                                                                            </div>
+                                                                            <div class="text-center mt-2">
+                                                                                <button type="submit" class="btn btn-danger bg-opacity-75">
+                                                                                    <i class="fas fa-magnifying-glass"></i> [[#{filtros.buscar}]]
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+                                                <!-- Sección para la barra de búsqueda -->
+                                                <section th:fragment="barraBusqueda">
+                                                    <div style="display: flex; justify-content: center; margin-top: 20px;">
+                                                        <form action="/buscar" method="get" style="width: 300px; display: flex;">
+                                                            <input 
+                                                                type="text" 
+                                                                name="query" 
+                                                                placeholder="Buscar..." 
+                                                                style="flex-grow: 1; padding: 8px; border-radius: 4px 0 0 4px; border: 1px solid #ccc;"
+                                                                >
+                                                                <button 
+                                                                    type="submit" 
+                                                                    style="padding: 8px; border-radius: 0 4px 4px 0; border: 1px solid #ccc; background-color: #D64B4B; color: white;"
+                                                                    >
+                                                                    Buscar
+                                                                </button>
+                                                        </form>
+                                                    </div>
+                                                </section>
+
+                                                <!-- Incluye los scripts de Bootstrap -->
+                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                                                </body>
+                                                </html>

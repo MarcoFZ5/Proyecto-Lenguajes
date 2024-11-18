@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>AutoDream</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <h1 style="color: #D64B4B; margin-top: 50px;text-align: center;">AutoDreams</h1>
+        <h2 style="color: #555; margin-top: 10px;text-align: center;">¡Bienvenidos a AutoDreams, la mejor página de venta de autos usados!</h2>
+        <h2 style="color: #555; margin-top: 20px;text-align: center;">Aquí encontrarás una amplia variedad de vehículos de calidad, revisados y garantizados, listos para llevarte a tu próximo destino. 
+            Nuestro objetivo es hacer realidad el sueño de tener el auto perfecto para ti y tu familia, ofreciéndote precios competitivos, 
+            financiamiento accesible y un servicio al cliente inigualable. ¡Explora nuestro catálogo y descubre tu próximo auto soñado!</h2>
+        
+        <section th:replace="~{ver/fragmentos :: barraBusqueda}"></section>
+        <section th:replace="~{ver/fragmentos :: consultas}"></section>
+        <section th:replace="~{ver/fragmentos :: listadoAutos}"></section>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

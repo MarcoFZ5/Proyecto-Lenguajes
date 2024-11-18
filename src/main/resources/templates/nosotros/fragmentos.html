@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>AutoDream</title>
+    </head>
+    <body>
+        <section th:fragment="infoBasicaEmpresa" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Sobre Nosotros</h2>
+                        <p>
+                            Somos "AutoDream" una empresa dedicada a la venta de autos usados en línea, ubicada en Grecia, Costa Rica. 
+                            Nos especializamos en ofrecer vehículos de alta calidad a precios competitivos, y nuestro objetivo es facilitar 
+                            el proceso de compra para nuestros clientes.
+                        </p>
+                        <p>
+                            Además, ofrecemos un servicio único que permite a los compradores potenciales probar los autos antes de 
+                            tomar una decisión final, asegurando que el vehículo que elijan se adapte perfectamente a sus necesidades.
+                        </p>
+                        <p>
+                            En "AutoDream," nos comprometemos a proporcionar una experiencia de compra confiable y transparente, con un enfoque 
+                            en la satisfacción del cliente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="redesSociales" class="py-4 bg-danger text-black">
+            <div class="container text-center">
+                <h4>Síguenos en nuestras redes sociales</h4>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="https://www.facebook.com/autodreamscr?mibextid=LQQJ4d" class="text-black me-4" target="_blank">
+                        <i class="fab fa-facebook fa-2x"></i>
+                    </a>
+                    <a href="https://www.instagram.com/auto_dreams_cr?igsh=cDh6aXh3OTF3c3kw" class="text-black me-4" target="_blank">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
